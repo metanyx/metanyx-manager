@@ -7,7 +7,8 @@ DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 MANAGER_DIR='/opt/metanyx/manager/'
 
 # Create manager directory in /opt/metanyx
-mkdir -m 0700 -p ${MANAGER_DIR}{views,static}
+mkdir -p ${MANAGER_DIR}{views,static}
+chmod 0700 -R ${MANAGER_DIR}
 
 cd ${DIR}/src
 cp bottle.py ${MANAGER_DIR}

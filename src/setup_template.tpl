@@ -96,7 +96,8 @@
                         import subprocess 
                         aps = subprocess.check_output(['iw', 'dev', 'wlan0', 'scan'])
                         for line in aps.split('\n'):
-                            if 'SSID' in line and not ('<' or '>') in line:
+                            #TODO: turn this into a whitelist
+                            if 'SSID' in line and not ('<' or '>' or '%') in line:
                                 ssid = line.split(": ")[1]
                   %>
                   <option value="{{ ssid }}">{{ ssid }}</option>
