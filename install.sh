@@ -3,12 +3,13 @@
 # Set up the management interface
 # Needs some work, have just taken out of ansible playbook
 
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 MANAGER_DIR='/opt/metanyx/manager/'
 
 # Create manager directory in /opt/metanyx
 mkdir -m 0700 -p ${MANAGER_DIR}{views,static}
 
-cd src
+cd ${DIR}/src
 cp bottle.py ${MANAGER_DIR}
 cp manage.py ${MANAGER_DIR}
 chmod 0600 ${MANAGER_DIR}bottle.py
