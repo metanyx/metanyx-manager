@@ -45,17 +45,31 @@ def hostapd_config(iface, ssid, psk, card='edimax', hide_ssid=False):
     with open(f, "w") as conf:
         conf.write(config)
 
-def dnsmasq_config(extra_iface):
-    f = '/etc/dnsmasq.conf'
+def dnsmasq_config(clients[]):
+    config = '/etc/dnsmasq.conf'
     interface = 'interface=' + extra_iface
-    with open(f, "r") as conf:
+
+    writing = True
+    writing_conf = False
+    with open(config, "r") as f:
         lines = conf.readlines()
-    with open(f, "w") as conf:
+    with open(config, "w") as f:
         for line in lines:
-            if 'eth0' in line:
-                conf.write(line)
-            else:
-                conf.write(re.sub(r'^interface=.*', interface, line))
+            if writing:
+                if "<IFACES>" in line:
+                    writing_conf = True
+                    f.write(line)
+                    return
+                if writing_conf:
+                    for c in clients: 
+                        f.write('interface=%s' % c)
+                    writing_conf = False
+                    writing = False
+                    return
+                f.write(line)
+            if "</IFACES>" in line:
+                writing = True
+                f.write(line)
 
 def iface_config(ssid, psk, eth_function, iface_eth='eth0', iface_client='wlan0', iface_ap='wlan1'):
     subprocess.call(["ifdown", iface_client])
@@ -170,13 +184,18 @@ def do_setup():
 
     print 'Applying config changes. metanyx will reboot when complete'
     
-    if 'dhcp_server' in eth_function:
+    clients = []
+    if ap_enable = 1:
+        clients.append(ap_iface)
+
+    if 'dhcp_client' in eth_function:
         manage_iface = ap_iface
     else:
         manage_iface = eth_iface
+        clients.append(eth_iface)
 
     hostapd_config(ap_iface, ap_ssid, ap_psk, 'edimax')
-    dnsmasq_config(ap_iface)
+    dnsmasq_config(clients)
     subprocess.call(["/root/iptables.sh", eth_iface, client_iface, ap_iface, manage_iface ])
     iface_config(client_ssid, client_psk, eth_function, eth_iface, client_iface, ap_iface)
 #    service('dnsmasq', 'restart')

@@ -2,7 +2,7 @@
 
 <head>  
   <meta charset="utf-8">  
-  <title>metanyx administration</title>  
+  <title>metanyx</title>  
   <meta name="metanyx" content="Welcome to metanyx.">  
   <meta name="viewport" content="width=device-width"> 
   <link rel="stylesheet" href="static/style.css?v=1">  
@@ -48,7 +48,7 @@
           <legend>Access Point</legend>
 
           %if usb_count < 2:
-            <input name="enabled" id="ap_enable" value="ap" checked="checked" type="radio">
+            <input name="ap_enable" id="ap_enable" value="0" checked="checked" type="radio">
             <label for="ap_enable">Enable</label>
           %else:
             <input name="ap_enable" id="ap_enable" value="1" checked="checked" type="checkbox">
@@ -75,10 +75,10 @@
           %if not 'None' in wlan_client:
 
                 %if usb_count < 2:
-                  <input name="enabled" id="client_enable" value="client" type="radio" >
+                  <input name="client_enable" id="client_enable" value=0 type="radio" >
                   <label for="client_enable">Enable</label>
                 %else:
-                  <input name="client_enable" id="client_enable" value="1" type="checkbox">
+                  <input name="client_enable" id="client_enable" value=1 type="checkbox">
                   <label for="client_enable">Enable</label>
                 %end
                   <br>
