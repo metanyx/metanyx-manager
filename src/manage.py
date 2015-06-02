@@ -45,27 +45,26 @@ def hostapd_config(iface, ssid, psk, card='edimax', hide_ssid=False):
     with open(f, "w") as conf:
         conf.write(config)
 
-def dnsmasq_config(clients[]):
+def dnsmasq_config(clients):
     config = '/etc/dnsmasq.conf'
-    interface = 'interface=' + extra_iface
 
     writing = True
     writing_conf = False
     with open(config, "r") as f:
-        lines = conf.readlines()
+        lines = f.readlines()
     with open(config, "w") as f:
         for line in lines:
             if writing:
                 if "<IFACES>" in line:
                     writing_conf = True
                     f.write(line)
-                    return
+                    continue
                 if writing_conf:
                     for c in clients: 
-                        f.write('interface=%s' % c)
+                        f.write('interface=%s\n' % c)
                     writing_conf = False
                     writing = False
-                    return
+                    continue
                 f.write(line)
             if "</IFACES>" in line:
                 writing = True
@@ -185,7 +184,7 @@ def do_setup():
     print 'Applying config changes. metanyx will reboot when complete'
     
     clients = []
-    if ap_enable = 1:
+    if ap_enable is '1':
         clients.append(ap_iface)
 
     if 'dhcp_client' in eth_function:
@@ -198,12 +197,6 @@ def do_setup():
     dnsmasq_config(clients)
     subprocess.call(["/root/iptables.sh", eth_iface, client_iface, ap_iface, manage_iface ])
     iface_config(client_ssid, client_psk, eth_function, eth_iface, client_iface, ap_iface)
-#    service('dnsmasq', 'restart')
-    #if '1' in ap_enable:
-    #    service('hostapd', 'restart')
-    #else:
-    #    service('hostapd', 'stop')
-    #service('metanyx-manager', 'restart')
     subprocess.call(["/sbin/reboot"])
     #return '<p>Config complete. <a href="setup">Menu</a></p>'
 
