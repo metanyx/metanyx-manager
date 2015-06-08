@@ -30,7 +30,36 @@ ul#navigation li a {
   text-shadow:1px 1px 0px #fff;
   text-decoration:none;
   display:inline-block;
-/3
+  border-right:1px solid #fff;
+  border-left:1px solid #C2C2C2;
+  border-top:1px solid #fff;
+  background: #f5f5f5;
+  -webkit-transition:color 0.2s linear, background 0.2s linear;
+  -moz-transition:color 0.2s linear, background 0.2s linear;
+  -o-transition:color 0.2s linear, background 0.2s linear;
+  transition:color 0.2s linear, background 0.2s linear;
+}
+
+ul#navigation li a:hover {
+  background:#f8f8f8;
+  color:#282828;
+}
+
+ul#navigation li a.first {
+  border-left: 0 none;
+}
+
+ul#navigation li a.last {
+  border-right: 0 none;
+}
+
+ul#navigation li:hover > a {
+  background:#fff;
+}
+
+/* Drop-Down Navigation */
+
+ul#navigation li:hover > ul
 {
   visibility:visible;
   opacity:1;
