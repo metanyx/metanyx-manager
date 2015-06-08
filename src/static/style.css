@@ -4,7 +4,6 @@ body {
   font-family:Arial,Helvettica,sans-serif;
   color:#000000;
   text-align: center;
-  background:url('bg.jpg') no-repeat center center;
   min-height:100%;
   background-size:cover;
 }
