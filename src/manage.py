@@ -197,6 +197,12 @@ def do_setup():
     dnsmasq_config(clients)
     subprocess.call(["/root/iptables.sh", eth_iface, client_iface, ap_iface, manage_iface ])
     iface_config(client_ssid, client_psk, eth_function, eth_iface, client_iface, ap_iface)
+#    service('dnsmasq', 'restart')
+    #if '1' in ap_enable:
+    #    service('hostapd', 'restart')
+    #else:
+    #    service('hostapd', 'stop')
+    #service('metanyx-manager', 'restart')
     subprocess.call(["/sbin/reboot"])
     #return '<p>Config complete. <a href="setup">Menu</a></p>'
 

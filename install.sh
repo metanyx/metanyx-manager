@@ -16,14 +16,14 @@ cp manage.py ${MANAGER_DIR}
 chmod 0600 ${MANAGER_DIR}bottle.py
 chmod 0700 ${MANAGER_DIR}manage.py
 
-cp metanyx-manager.service /etc/systemd/system/metanyx-manager
+cp init/metanyx-manager.service /etc/systemd/system/metanyx-manager
 chmod 0600 /etc/systemd/system/metanyx-manager
-cp metanyx-manager.sysvinit /etc/init.d/metanyx-manager
+cp init/metanyx-manager.sysvinit /etc/init.d/metanyx-manager
 chmod 0700 /etc/init.d/metanyx-manager
-cp setup_template.tpl ${MANAGER_DIR}views/
-cp status_template.tpl ${MANAGER_DIR}views/
+
+cp views/* ${MANAGER_DIR}views/
 chmod 0600 ${MANAGER_DIR}views/*
-cp style.css ${MANAGER_DIR}static/
+cp static/* ${MANAGER_DIR}static/
 chmod 0600 ${MANAGER_DIR}static/*
 
 systemctl enable metanyx-manager || update-rc.d metanyx-manager defaults
