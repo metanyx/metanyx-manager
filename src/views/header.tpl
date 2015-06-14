@@ -35,8 +35,8 @@
           </li>
           <li><a href="#">Shutdown</a>
             <ul>
-              <li><a rel="external" href="shutdown">Shutdown</a></li>  
               <li><a rel="external" href="reboot">Reboot</a></li>  
+              <li><a rel="external" href="shutdown">Shutdown</a></li>  
             </ul>
           </li>
         </ul>

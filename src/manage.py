@@ -216,11 +216,12 @@ def status():
 
 @get('/update')
 def update():
-    try:
-        update = subprocess.check_output(["bash", "/opt/metanyx/src/ansible/run_update.sh"])
-        return template('<p>Update complete. <a href="setup">Menu</a></p><p> {{ update }} </p>', update=update)
-    except subprocess.CalledProcessError as update_error:
-        return template('<p>Update failure. <a href="setup">Menu</a></p><p>{{ error }}</p>', error=update_error)
+        return template('<p>Sorry. Not yet working. <a href="setup">Menu</a></p><p></p>')
+    #try:
+    #    update = subprocess.check_output(["bash", "/opt/metanyx/src/ansible/run_update.sh"])
+    #    return template('<p>Update complete. <a href="setup">Menu</a></p><p> {{ update }} </p>', update=update)
+    #except subprocess.CalledProcessError as update_error:
+    #    return template('<p>Update failure. <a href="setup">Menu</a></p><p>{{ error }}</p>', error=update_error)
 
 
 @get('/shutdown')
