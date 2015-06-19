@@ -181,11 +181,17 @@ def do_setup():
     eth_iface = 'eth0'
     eth_function = request.forms.get('eth_function')
 
+    if not client_enable:
+        client_ssid = "<SSID>"
+        client_psk = "<PSK>"
+
     print 'Applying config changes. metanyx will reboot when complete'
     
     clients = []
     if ap_enable is '1':
         clients.append(ap_iface)
+    else:
+        systemctl disable hostapd.service
 
     if 'dhcp_client' in eth_function:
         manage_iface = ap_iface
