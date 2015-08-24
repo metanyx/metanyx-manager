@@ -191,7 +191,8 @@ def do_setup():
     if ap_enable is '1':
         clients.append(ap_iface)
     else:
-        systemctl disable hostapd.service
+        subprocess.call(["systemctl", ",disable", "hostapd.service"])
+
 
     if 'dhcp_client' in eth_function:
         manage_iface = ap_iface
