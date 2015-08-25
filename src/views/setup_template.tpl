@@ -30,9 +30,9 @@
             <br>
 
           <input type="radio" name="ap_iface" id="wlan1_ap" value="wlan1" checked="checked">
-          <label for="wlan1_ap">wlan1</label>
+          <label for="wlan1_ap">Nano WiFi</label>
           <input type="radio" name="ap_iface" id="wlan0_ap" value="wlan0">
-          <label for="wlan0_ap">wlan0</label>
+          <label for="wlan0_ap">Antenna WiFi</label>
           <br><br>
 
           <label for="ssid">SSID</label><br>
@@ -57,9 +57,9 @@
                   <br>
       
                 <input type="radio" name="client_iface" id="wlan1_client" value="wlan1">
-                <label for="wlan1_client">wlan1</label>
+                <label for="wlan1_client">Nano WiFi</label>
                 <input type="radio" name="client_iface" id="wlan0_client" value="wlan0" checked="checked">
-                <label for="wlan0_client">wlan0</label>
+                <label for="wlan0_client">Antenna WiFi</label>
                 <br><br>
       
                 SSID<br>
