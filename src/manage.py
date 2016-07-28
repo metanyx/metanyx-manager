@@ -8,6 +8,10 @@ from bottle import get, post, request, run, route, template, static_file
 usb_count = 2
 interfaces_file = '/etc/network/interfaces'
 git_location = 'https://github.com/metanyx/metanyx.git'
+allowed_subprocesses = ['service', 'ln', 'ifup', 'ifdown', 'iw', 'ifconfig']
+
+def service(service, action):
+    subprocess.call(['service', service, action])
 
 def wlan_client_check(iface):
 	try:
@@ -15,11 +19,6 @@ def wlan_client_check(iface):
 	    return 'wlan0'
 	except subprocess.CalledProcessError as update_error:
 	    return 'None'
-
-allowed_subprocesses = ['service', 'ln', 'ifup', 'ifdown', 'iw']
-
-def service(service, action):
-    subprocess.call(['service', service, action])
 
 def hostapd_config(iface, ssid, psk, card='edimax', hide_ssid=False):
     f = '/etc/hostapd/hostapd.conf'
